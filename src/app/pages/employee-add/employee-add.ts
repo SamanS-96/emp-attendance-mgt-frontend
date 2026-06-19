@@ -110,7 +110,7 @@ export class EmployeeAdd {
 
   loadDepartments() {
     this.employeeService
-      .getDepartments()
+      .getDepartmentNames()
       .subscribe({
         next: (data) => {
           this.departments = data;

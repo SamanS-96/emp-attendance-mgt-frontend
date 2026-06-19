@@ -34,8 +34,8 @@ export class EmployeeService {
         return this.http.get<string[]>('http://localhost:8080/employees/roles');
     }
 
-    getDepartments() {
-        return this.http.get<string[]>('http://localhost:8080/employees/departments');
+    getDepartmentNames() {
+        return this.http.get<string[]>('http://localhost:8080/departments/get-names');
     }
 
 

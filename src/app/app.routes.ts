@@ -6,6 +6,12 @@ import { DepartmentAdd } from './pages/department-add/department-add';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'employee',
+    pathMatch: 'full'
+  },
+
+  {
     path: 'employee',
     component: Employee
   },
