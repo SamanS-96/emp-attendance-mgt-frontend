@@ -1,4 +1,4 @@
-<h1>Add Employee</h1>
+<h1>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h1>
 
 <form [formGroup]="employeeForm" (ngSubmit)="save()">
 
@@ -10,7 +10,14 @@
 
   <input type="text" placeholder="Phone" formControlName="phone">
 
-  <input type="number" placeholder="Department ID" formControlName="departmentId">
+  <select formControlName="department">
+    <option value="">Select Department</option>
+    @for(department of departments; track department) {
+        <option [value]="department">
+        {{ department }}
+        </option>
+    }
+  </select>
 
   <select formControlName="role">
     <option value="">Select Role</option>
@@ -21,6 +28,6 @@
     }
   </select>
 
-  <button type="submit">Save</button>
+  <button mat-raised-button color="primary" type="submit">Save</button>
 
 </form>

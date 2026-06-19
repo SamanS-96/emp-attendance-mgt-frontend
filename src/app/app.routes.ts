@@ -10,5 +10,9 @@ export const routes: Routes = [
   {
     path: 'employee-add',
     component: EmployeeAdd
+  },
+  {
+    path:'employee-edit/:id',
+    component: EmployeeAdd
   }
 ];

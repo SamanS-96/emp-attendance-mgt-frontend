@@ -21,35 +21,56 @@ export class Employee implements OnInit {
   displayedColumns: string[] = [
     'code',
     'firstName',
-    'email'
+    'email',
+    'action'
   ];
 
   constructor(
     private employeeService: EmployeeService,
     private cd: ChangeDetectorRef,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    this.loadEmployees();
+  }
 
+  addEmployee() {
+    this.router.navigate(['/employee-add']);
+  }
+
+  editEmployee(id: number) {
+    this.router.navigate([
+      '/employee-edit',
+      id
+    ]);
+  }
+
+  deactivateEmployee(id: number) {
+    if (!confirm("Deactivate this employee?")) {
+      return;
+    }
+    this.employeeService
+      .deactivate(id)
+      .subscribe({
+        next: () => {
+          this.loadEmployees();
+        }
+      });
+  }
+
+  loadEmployees(){
     this.employeeService.getAll()
       .subscribe({
-        next: (data:any)=>{
-
+        next: (data: any) => {
           console.log("EMP DATA :", data);
-
           this.employees = data;
-
           this.cd.detectChanges();
-
         },
-        error:(error)=>{
+        error: (error) => {
           console.log(error);
         }
       });
   }
 
-  addEmployee(){
-    this.router.navigate(['/employee-add']);
-  }
 }
