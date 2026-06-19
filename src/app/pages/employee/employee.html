@@ -1,5 +1,7 @@
 <h1>Employees</h1>
 
+<button mat-raised-button color="primary" (click)="addEmployee()">Add Employee</button>
+
 <table mat-table [dataSource]="employees">
 
   <ng-container matColumnDef="code">

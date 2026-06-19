@@ -1,0 +1,26 @@
+<h1>Add Employee</h1>
+
+<form [formGroup]="employeeForm" (ngSubmit)="save()">
+
+  <input type="text" placeholder="First Name" formControlName="firstName">
+
+  <input  type="text" placeholder="Last Name" formControlName="lastName">
+
+  <input type="email" placeholder="Email" formControlName="email">
+
+  <input type="text" placeholder="Phone" formControlName="phone">
+
+  <input type="number" placeholder="Department ID" formControlName="departmentId">
+
+  <select formControlName="role">
+    <option value="">Select Role</option>
+    @for(role of roles; track role) {
+        <option [value]="role">
+        {{ role }}
+        </option>
+    }
+  </select>
+
+  <button type="submit">Save</button>
+
+</form>

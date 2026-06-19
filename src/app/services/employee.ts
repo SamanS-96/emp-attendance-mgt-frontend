@@ -13,4 +13,7 @@ export class EmployeeService {
   getAll() {
     return this.http.get(this.api + '/get-all');
   }
+  save(employee: any) {
+    return this.http.post(this.api +'/save', employee);
+  }
 }

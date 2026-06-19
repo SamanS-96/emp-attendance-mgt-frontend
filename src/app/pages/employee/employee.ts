@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
   imports: [
-    MatTableModule
+    MatTableModule,
+    MatButtonModule
   ],
   templateUrl: './employee.html',
   styleUrl: './employee.css',
@@ -21,24 +25,31 @@ export class Employee implements OnInit {
   ];
 
   constructor(
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private cd: ChangeDetectorRef,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
 
-  this.employeeService.getAll()
-    .subscribe({
-      next: (data:any)=>{
+    this.employeeService.getAll()
+      .subscribe({
+        next: (data:any)=>{
 
-        console.log("EMP DATA :", data);
+          console.log("EMP DATA :", data);
 
-        this.employees = data;
+          this.employees = data;
 
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+          this.cd.detectChanges();
 
-}
+        },
+        error:(error)=>{
+          console.log(error);
+        }
+      });
+  }
+
+  addEmployee(){
+    this.router.navigate(['/employee-add']);
+  }
 }
