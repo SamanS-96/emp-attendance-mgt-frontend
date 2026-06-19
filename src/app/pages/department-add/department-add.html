@@ -1,0 +1,11 @@
+<h1>{{ isEditMode ? 'Edit Department' : 'Add Department' }}</h1>
+
+<form [formGroup]="departmentForm" (ngSubmit)="save()">
+
+  <input type="text" placeholder="Name" formControlName="name">
+
+  <input  type="text" placeholder="Description" formControlName="description">
+
+  <button mat-raised-button color="primary" type="submit">Save</button>
+
+</form>
