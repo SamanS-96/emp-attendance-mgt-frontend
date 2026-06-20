@@ -7,12 +7,13 @@ import { DepartmentAdd } from './pages/department-add/department-add';
 import { LeaveRequest } from './pages/leave-request/leave-request';
 import { LeaveRequestAdd } from './pages/leave-request-add/leave-request-add';
 import { Attendance } from './pages/attendance/attendance';
+import { Login } from './pages/login/login';
 
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 
@@ -66,5 +67,10 @@ export const routes: Routes = [
     component: Attendance
   },
 
+
+  {
+    path: 'login',
+    component: Login
+  }
 
 ];
