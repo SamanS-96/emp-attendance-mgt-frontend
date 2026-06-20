@@ -1,14 +1,24 @@
 import { Routes } from '@angular/router';
+import { Dashboard } from './pages/dashboard/dashboard';
 import { Employee } from './pages/employee/employee';
 import { EmployeeAdd } from './pages/employee-add/employee-add';
 import { Department } from './pages/department/department';
 import { DepartmentAdd } from './pages/department-add/department-add';
+import { LeaveRequest } from './pages/leave-request/leave-request';
+import { Attendance } from './pages/attendance/attendance';
+
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'employee',
     pathMatch: 'full'
+  },
+
+
+  {
+    path: 'dashboard',
+    component: Dashboard
   },
 
   {
@@ -35,5 +45,17 @@ export const routes: Routes = [
   {
     path:'department-edit/:id',
     component: DepartmentAdd
-  }
+  },
+
+  {
+    path: 'leave-request',
+    component: LeaveRequest
+  },
+
+  {
+    path: 'attendance',
+    component: Attendance
+  },
+
+
 ];
