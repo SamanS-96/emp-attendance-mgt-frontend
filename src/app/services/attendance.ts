@@ -22,6 +22,10 @@ export class AttendanceService {
         return this.http.post(this.api + '/check-out', attendance);
     }
 
+    getAllByUserName(userName: any){
+        return this.http.get(this.api + '/get-allByUserName?userName=' + userName);
+    }
+    
 }
 
 

@@ -25,6 +25,10 @@ export class LeaveRequestService {
     getById(id: number) {
         return this.http.get(this.api + '/get/' + id);
     }
+
+    getAllByUserName(userName: any){
+        return this.http.get(this.api + '/get-allByUserName?userName=' + userName);
+    }
 }
 
 

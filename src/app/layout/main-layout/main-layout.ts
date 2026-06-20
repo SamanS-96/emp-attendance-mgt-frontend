@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { AuthService } from '../../services/auth';
@@ -20,7 +20,13 @@ import { CommonModule } from '@angular/common';
 export class MainLayout {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {}
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['/login']);
+  }
 
 }
