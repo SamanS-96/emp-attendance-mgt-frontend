@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { AuthService } from './services/auth';
+import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-main-layout',
   imports: [
     RouterOutlet,
     RouterLink,
@@ -14,14 +14,13 @@ import { CommonModule } from '@angular/common';
     MatListModule,
     CommonModule
   ],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  templateUrl: './main-layout.html',
+  styleUrl: './main-layout.css',
 })
-export class App {
+export class MainLayout {
 
   constructor(
     public authService: AuthService
   ) {}
 
-  protected readonly title = signal('emp-attendance-mgt-frontend');
 }

@@ -28,7 +28,7 @@ export class Employee implements OnInit {
   constructor(
     private employeeService: EmployeeService,
     private cd: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

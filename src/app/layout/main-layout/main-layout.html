@@ -1,0 +1,30 @@
+<mat-sidenav-container style="height: 100vh;">
+
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <!-- Everyone -->
+      <a mat-list-item routerLink="/dashboard">Dashboard</a>
+
+      <!-- Admin Only -->
+      <ng-container *ngIf="authService.isAdmin()">
+        <a mat-list-item routerLink="/employee">Employee</a>
+        <a mat-list-item routerLink="/department"> Department</a>
+        <a mat-list-item routerLink="/attendance"> Attendance</a>
+        <a mat-list-item routerLink="/leave-request"> Leave Requests</a>
+      </ng-container>
+
+      <!-- Employee Only -->
+      <ng-container *ngIf="authService.isEmployee()">
+        <a mat-list-item routerLink="/my-attendance">My Attendance</a>
+        <a mat-list-item routerLink="/my-leaves">My Leave Requests</a>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div style="padding:20px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
