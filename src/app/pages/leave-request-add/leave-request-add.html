@@ -1,0 +1,15 @@
+<h1>{{ isEditMode ? 'Edit Leave Request' : 'Request For Leave' }}</h1>
+
+<form [formGroup]="leaveRequestForm" (ngSubmit)="save()">
+
+  <input type="text" placeholder="Employee" formControlName="userName">
+
+  <input  type="date" placeholder="From Date" formControlName="fromDate">
+
+  <input  type="date" placeholder="To Date" formControlName="toDate">
+
+  <input type="text" placeholder="Reason" formControlName="reason">
+
+  <button mat-raised-button color="primary" type="submit">Save</button>
+
+</form>

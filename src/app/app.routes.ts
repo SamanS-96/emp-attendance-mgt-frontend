@@ -5,6 +5,7 @@ import { EmployeeAdd } from './pages/employee-add/employee-add';
 import { Department } from './pages/department/department';
 import { DepartmentAdd } from './pages/department-add/department-add';
 import { LeaveRequest } from './pages/leave-request/leave-request';
+import { LeaveRequestAdd } from './pages/leave-request-add/leave-request-add';
 import { Attendance } from './pages/attendance/attendance';
 
 
@@ -50,6 +51,14 @@ export const routes: Routes = [
   {
     path: 'leave-request',
     component: LeaveRequest
+  },
+  {
+    path: 'leave-request-add',
+    component: LeaveRequestAdd
+  },
+  {
+    path:'leave-request-edit/:id',
+    component: LeaveRequestAdd
   },
 
   {
