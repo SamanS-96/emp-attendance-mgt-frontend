@@ -12,7 +12,7 @@ import { Attendance } from './pages/attendance/attendance';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'employee',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
 
