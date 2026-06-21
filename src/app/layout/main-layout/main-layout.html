@@ -1,6 +1,6 @@
 <mat-sidenav-container style="height: 100vh;">
 
-  <mat-sidenav mode="side" opened>
+  <mat-sidenav class="side-nav" mode="side" opened>
     <mat-nav-list>
       <!-- Everyone -->
       <a mat-list-item routerLink="/dashboard">Dashboard</a>
@@ -20,8 +20,10 @@
       </ng-container>
     </mat-nav-list>
 
-    <button (click)="logout()">Logout</button>
-    
+    <div class="logout-container">
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
