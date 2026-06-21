@@ -4,6 +4,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
+import { OnInit } from '@angular/core';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-main-layout',
@@ -17,16 +19,27 @@ import { CommonModule } from '@angular/common';
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.css',
 })
-export class MainLayout {
+export class MainLayout implements OnInit {
 
   constructor(
     public authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
+
+  @HostListener('window:popstate')
+  onBackButton() {
+    this.logout();
+  }
+
+  ngOnInit(): void {
+    if (!localStorage.getItem('user')) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/login');
   }
 
 }

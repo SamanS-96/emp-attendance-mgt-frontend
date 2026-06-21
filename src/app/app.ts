@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { AuthService } from './services/auth';
@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    RouterLink,
     MatSidenavModule,
     MatListModule,
     CommonModule
