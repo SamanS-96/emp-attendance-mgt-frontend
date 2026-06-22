@@ -15,15 +15,19 @@ export class AttendanceService {
     }
 
     saveCheckIn(attendance: any) {
-        return this.http.post(this.api + '/check-in', attendance);
+        return this.http.put(this.api + '/check-in', attendance, { responseType: 'text' });
     }
 
     saveCheckOut(attendance: any) {
-        return this.http.post(this.api + '/check-out', attendance);
+        return this.http.put(this.api + '/check-out', attendance, { responseType: 'text' });
     }
 
     getAllByUserName(userName: any){
         return this.http.get(this.api + '/get-allByUserName?userName=' + userName);
+    }
+
+    getTodayAttendanceDetails(userName: string){
+        return this.http.get(this.api + '/get-today-details/' + userName);
     }
     
 }

@@ -20,25 +20,25 @@
 
         <div class="dashboard-card">
             <h2>Total Employees</h2>
-            <h1>120</h1>
+            <h1>{{ employeeCount ?? '-'}}</h1>
         </div>
 
 
         <div class="dashboard-card">
             <h2>Present Today</h2>
-            <h1>95</h1>
+            <h1>{{ presentTodayCount ?? '-'}}</h1>
         </div>
 
 
         <div class="dashboard-card">
             <h2>Absent Today</h2>
-            <h1>8</h1>
+            <h1>{{ absentTodayCount ?? '-'}}</h1>
         </div>
 
 
         <div class="dashboard-card">
             <h2>My Attendance</h2>
-            <h1 style="color: #3f51b5; font-size: 25PX;">PRESENT</h1>
+            <h1 style="color: #3f51b5; font-size: 25PX;">{{ myStatus ?? '-'}}</h1>
         </div>
 
 
@@ -50,7 +50,7 @@
             <h2>Check In</h2>
             <p>Start your working day</p>
 
-            <button>
+            <button (click)="saveCheckIn()">
                 Check In
             </button>
         </div>
@@ -60,7 +60,7 @@
             <h2>Check Out</h2>
             <p>End your working day</p>
 
-            <button>
+            <button (click)="saveCheckOut()">
                 Check Out
             </button>
         </div>

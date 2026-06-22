@@ -14,6 +14,10 @@ export class EmployeeService {
         return this.http.get(this.api + '/get-all');
     }
 
+    getEmpCount(){
+        return this.http.get<number>(this.api + '/get-count');
+    }
+
     save(employee: any) {
         return this.http.post(this.api + '/save', employee);
     }

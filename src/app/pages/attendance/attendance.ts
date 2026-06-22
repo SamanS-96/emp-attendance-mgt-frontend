@@ -3,7 +3,7 @@ import { AttendanceService } from '../../services/attendance';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-attendance',
@@ -31,7 +31,7 @@ export class Attendance implements OnInit {
   constructor(
     private attendanceService: AttendanceService,
     private cd: ChangeDetectorRef,
-    private router: Router
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -51,5 +51,4 @@ export class Attendance implements OnInit {
         }
       });
   }
-
 }

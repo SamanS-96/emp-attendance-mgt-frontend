@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { DepartmentService } from '../../services/department';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChangeDetectorRef } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -14,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './department-add.html',
   styleUrl: './department-add.css',
 })
-export class DepartmentAdd {
+export class DepartmentAdd implements OnInit{
 
   departmentForm: FormGroup;
   departmentId!: number;
@@ -24,8 +23,7 @@ export class DepartmentAdd {
     private fb: FormBuilder,
     private departmentService: DepartmentService,
     private router: Router,
-    private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute
   ) {
 
     this.departmentForm = this.fb.group({
