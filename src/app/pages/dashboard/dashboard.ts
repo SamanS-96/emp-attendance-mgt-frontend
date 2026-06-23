@@ -61,6 +61,7 @@ export class Dashboard implements OnInit{
           next: (message: string) => {
             console.log("Message :", message);
             alert(message);
+            this.loadDashboardDetails();
           },
           error: (error) => {
             console.log(error);
@@ -80,6 +81,7 @@ export class Dashboard implements OnInit{
           next: (message: string) => {
             console.log("Message :", message);
             alert(message);
+            this.loadDashboardDetails();
           },
           error: (error) => {
             console.log(error);

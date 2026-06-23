@@ -28,7 +28,9 @@ export class MainLayout implements OnInit {
 
   @HostListener('window:popstate')
   onBackButton() {
-    this.logout();
+    if (this.router.url === '/dashboard') {
+      this.logout();
+    }
   }
 
   ngOnInit(): void {

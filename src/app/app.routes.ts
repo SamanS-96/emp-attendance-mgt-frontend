@@ -12,7 +12,6 @@ import { MyAttendance } from './pages/my-attendance/my-attendance';
 import { MyLeaves } from './pages/my-leaves/my-leaves';
 import { MainLayout } from './layout/main-layout/main-layout';
 
-
 export const routes: Routes = [
 
   {
