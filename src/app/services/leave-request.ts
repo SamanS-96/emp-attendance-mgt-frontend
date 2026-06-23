@@ -26,8 +26,17 @@ export class LeaveRequestService {
         return this.http.get(this.api + '/get/' + id);
     }
 
-    getAllByUserName(userName: any){
+    getAllByUserName(userName: any) {
         return this.http.get(this.api + '/get-allByUserName?userName=' + userName);
+    }
+
+    approveLeaveRequest(id: number) {
+        return this.http.put(this.api + '/leave-request/approve/' +id, {}); 
+    }
+
+
+    rejectLeaveRequest(id: number) {
+        return this.http.put(this.api + '/leave-request/reject/' +id, {}); 
     }
 }
 

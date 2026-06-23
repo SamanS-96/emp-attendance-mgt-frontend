@@ -35,28 +35,28 @@
   <ng-container matColumnDef="checkInTime">
     <th mat-header-cell *matHeaderCellDef> Check In </th>
     <td mat-cell *matCellDef="let att">
-      {{ att.checkInTime }}
+      {{ att.checkInTime ? att.checkInTime : "----" }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="checkOutTime">
     <th mat-header-cell *matHeaderCellDef> Check Out </th>
     <td mat-cell *matCellDef="let att">
-      {{ att.checkOutTime }}
+      {{ att.checkOutTime ? att.checkOutTime : "----" }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="workingHours">
     <th mat-header-cell *matHeaderCellDef> Working Hours </th>
     <td mat-cell *matCellDef="let att">
-      {{ att.workingHours }}
+      {{ att.workingHours ? att.workingHours : "----" }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> Status </th>
     <td mat-cell *matCellDef="let att">
-      {{ att.status }}
+      {{ att.status ? att.status : "----" }}
     </td>
   </ng-container>
 

@@ -4,62 +4,93 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-leave-request',
   imports: [
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './leave-request.html',
   styleUrl: './leave-request.css',
 })
 export class LeaveRequest implements OnInit {
 
-  leaveRequests: any[] = [];
+  searchText:string='';
+  allLeaveRequests:any[]=[];
+  leaveRequests:any[]=[];
+  currentUser:any;
 
-  displayedColumns: string[] = [
+  displayedColumns:string[]=[
     'userName',
     'fromDate',
     'toDate',
     'reason',
-    'status',
     'action'
   ];
 
   constructor(
-    private leaveRequestService: LeaveRequestService,
-    private cd: ChangeDetectorRef,
-    private router: Router
-  ) { }
+    private leaveRequestService:LeaveRequestService,
+    private cd:ChangeDetectorRef,
+    private router:Router,
+    private authService:AuthService
+  ){}
 
-  ngOnInit(): void {
+  ngOnInit():void{
+    this.currentUser=this.authService.getUser();
     this.loadLeaveRequests();
   }
 
-  addLeaveRequest() {
-    this.router.navigate(['/leave-request-add']);
+  approveLeaveRequest(id:number):void{
+    this.leaveRequestService.approveLeaveRequest(id)
+    .subscribe({
+      next:(response:any)=>{
+        console.log(response);
+        this.loadLeaveRequests();
+      }
+    });
   }
 
-  editLeaveRequest(id: number) {
-    this.router.navigate([
-      '/leave-request-edit',
-      id
-    ]);
+  rejectLeaveRequest(id:number):void{
+    this.leaveRequestService.rejectLeaveRequest(id)
+    .subscribe({
+      next:(response:any)=>{
+        console.log(response);
+        this.loadLeaveRequests();
+      }
+    });
   }
 
   loadLeaveRequests(){
     this.leaveRequestService.getAll()
-      .subscribe({
-        next: (data: any) => {
-          console.log("LR DATA :", data);
-          this.leaveRequests = data;
-          this.cd.detectChanges();
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+    .subscribe({
+      next:(data:any)=>{
+        console.log("LR DATA :",data);
+        this.allLeaveRequests=data;
+        this.leaveRequests=data;
+        this.cd.detectChanges();
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    });
+  }
+
+  searchLeaveRequests(){
+    const text=this.searchText.toLowerCase();
+
+    this.leaveRequests=this.allLeaveRequests.filter(lr =>
+      lr.userName.toLowerCase().includes(text) ||
+      lr.fromDate.toString().includes(text) ||
+      lr.toDate.toString().includes(text) ||
+      lr.reason.toLowerCase().includes(text) ||
+      lr.status.toLowerCase().includes(text)
+    );
   }
 
 }

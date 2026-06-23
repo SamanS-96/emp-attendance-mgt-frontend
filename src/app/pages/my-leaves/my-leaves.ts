@@ -5,63 +5,78 @@ import { MatButtonModule } from '@angular/material/button';
 import { ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-my-leaves',
   imports: [
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   templateUrl: './my-leaves.html',
   styleUrl: './my-leaves.css',
 })
 export class MyLeaves implements OnInit {
 
-  leaveRequests: any[] = [];
+  searchText:string='';
+  allLeaveRequests:any[]=[];
+  leaveRequests:any[]=[];
+  currentUser:any;
 
-  displayedColumns: string[] = [
+  displayedColumns:string[]=[
     'userName',
     'fromDate',
     'toDate',
     'reason',
-    'status',
-    'action'
+    'status'
   ];
 
   constructor(
-    private leaveRequestService: LeaveRequestService,
-    private cd: ChangeDetectorRef,
-    private router: Router,
-    private authService: AuthService
-  ) { }
+    private leaveRequestService:LeaveRequestService,
+    private cd:ChangeDetectorRef,
+    private router:Router,
+    private authService:AuthService
+  ){}
 
-  ngOnInit(): void {
+  ngOnInit():void{
+    this.currentUser=this.authService.getUser();
     this.loadMyLeaves();
   }
 
-  addLeaveRequest() {
+  addLeaveRequest(){
     this.router.navigate(['/leave-request-add']);
   }
 
-  editLeaveRequest(id: number) {
-    this.router.navigate([
-      '/leave-request-edit',
-      id
-    ]);
+  editLeaveRequest(){
+    this.router.navigate(['/leave-request-add']);
   }
 
   loadMyLeaves(){
     this.leaveRequestService.getAllByUserName(this.authService.getUsername())
-      .subscribe({
-        next: (data: any) => {
-          console.log("LR DATA :", data);
-          this.leaveRequests = data;
-          this.cd.detectChanges();
-        },
-        error: (error) => {
-          console.log(error);
-        }
-      });
+    .subscribe({
+      next:(data:any)=>{
+        console.log("LR DATA :",data);
+        this.allLeaveRequests=data;
+        this.leaveRequests=data;
+        this.cd.detectChanges();
+      },
+      error:(error)=>{
+        console.log(error);
+      }
+    });
+  }
+
+  searchLeaveRequests(){
+    const text=this.searchText.toLowerCase();
+
+    this.leaveRequests=this.allLeaveRequests.filter(lr =>
+      lr.userName.toLowerCase().includes(text) ||
+      lr.fromDate.toString().includes(text) ||
+      lr.toDate.toString().includes(text) ||
+      lr.reason.toLowerCase().includes(text) ||
+      lr.status.toLowerCase().includes(text)
+    );
   }
 
 }

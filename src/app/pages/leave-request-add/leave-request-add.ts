@@ -71,7 +71,7 @@ export class LeaveRequestAdd {
         .subscribe({
           next: () => {
             alert("LeaveRequest Updated");
-            this.router.navigate(['/leave-request']);
+            this.router.navigate(['/my-leaves']);
           }
         });
     } else {
@@ -80,7 +80,7 @@ export class LeaveRequestAdd {
         .subscribe({
           next: () => {
             alert("LeaveRequest Saved");
-            this.router.navigate(['/leave-request']);
+            this.router.navigate(['/my-leaves']);
           }
         });
     }
