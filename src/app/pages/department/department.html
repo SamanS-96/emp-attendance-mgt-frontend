@@ -1,6 +1,29 @@
+<div class="top-bar">
+
+  <div class="user-card">
+    <div>
+      Logged in as: <strong>{{ currentUser.userName }}</strong>
+    </div>
+
+    <div class="role-badge">
+      {{ currentUser.role }}
+    </div>
+  </div>
+
+  <input type="text"
+         placeholder="Search department..."
+         [(ngModel)]="searchText"
+         (input)="searchDepartments()">
+
+</div>
+
+
 <h1>Departments</h1>
 
-<button mat-raised-button color="primary" (click)="addDepartment()">Add Department</button>
+<button mat-raised-button color="primary" (click)="addDepartment()">
+  Add Department
+</button>
+
 
 <table mat-table [dataSource]="departments">
 
@@ -11,6 +34,7 @@
     </td>
   </ng-container>
 
+
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef> Description </th>
     <td mat-cell *matCellDef="let dpt">
@@ -18,13 +42,24 @@
     </td>
   </ng-container>
 
+
   <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <th mat-header-cell *matHeaderCellDef>
+      Action
+    </th>
+
     <td mat-cell *matCellDef="let dpt">
-        <button mat-raised-button color="primary" (click)="editDepartment(dpt.id)">Edit</button>
+
+      <button mat-raised-button
+              color="primary"
+              (click)="editDepartment(dpt.id)">
+        Edit
+      </button>
+
     </td>
-    
+
   </ng-container>
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
