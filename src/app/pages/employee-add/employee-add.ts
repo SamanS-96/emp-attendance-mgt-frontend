@@ -88,9 +88,9 @@ export class EmployeeAdd {
         .subscribe({
           next: (response: any) => {
             if(response == null){
-              alert("email same for exist employee !");
+              alert("email same for exist Employee !");
             }else{
-              alert("Employee Updated Succesful");
+              alert("Employee Updated Succesful !");
               this.router.navigate(['/employee']);
             }          
           }
@@ -102,7 +102,7 @@ export class EmployeeAdd {
             if(response == null){
               alert("This Employee allready Added !");
             }else{
-              alert("Employee Saved Succesful");
+              alert("Employee Saved Succesful !");
               this.router.navigate(['/employee']);
             }
           }
