@@ -1,0 +1,25 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h1>Employee Attendance System</h1>
+    <p>Login to your account</p>
+
+
+    <form (ngSubmit)="login()">
+
+      <input [(ngModel)]="username" name="username" placeholder="User Name">
+
+
+      <input [(ngModel)]="password" name="password" placeholder="Password" type="password">
+
+
+      <button type="submit">
+        Login
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

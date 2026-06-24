@@ -1,0 +1,31 @@
+<div class="top-bar">
+  <div class="user-card">
+    <div>Logged in as: <strong>{{currentUser.userName}}</strong></div>
+    <div class="role-badge">{{currentUser.role}}</div>
+  </div>
+</div>
+
+<h1>{{isEditMode?'Update Leave Request':'Request For Leave'}}</h1>
+
+<form [formGroup]="leaveRequestForm" (ngSubmit)="save()">
+
+  <input type="text" placeholder="Employee" formControlName="userName" readonly>
+
+  <input type="date" formControlName="fromDate">
+  @if(leaveRequestForm.get('fromDate')?.touched && leaveRequestForm.get('fromDate')?.invalid){
+  <small>From date is required</small>
+  }
+
+  <input type="date" formControlName="toDate">
+  @if(leaveRequestForm.get('toDate')?.touched && leaveRequestForm.get('toDate')?.invalid){
+  <small>To date is required</small>
+  }
+
+  <input type="text" placeholder="Reason" formControlName="reason">
+  @if(leaveRequestForm.get('reason')?.touched && leaveRequestForm.get('reason')?.invalid){
+  <small>Reason is required</small>
+  }
+
+  <button mat-raised-button color="primary" type="submit">Save</button>
+
+</form>
