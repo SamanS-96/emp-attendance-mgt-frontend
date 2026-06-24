@@ -22,7 +22,7 @@ export class EmployeeAdd {
   isEditMode = false;
   roles: string[] = [];
   departments: string[] = [];
-  currentUser:any;
+  currentUser: any;
 
   constructor(
     private fb: FormBuilder,
@@ -87,22 +87,30 @@ export class EmployeeAdd {
       this.employeeService.update(this.employeeId, employee)
         .subscribe({
           next: (response: any) => {
-            if(response == null){
+            if (response == null) {
               alert("email same for exist Employee !");
-            }else{
-              alert("Employee Updated Succesful !");
+            } else {
+               alert(
+                "Employee Updated Successfully!\n\n" +
+                "Username: " + response.userName + "\n" +
+                "Password: " + response.password
+              );
               this.router.navigate(['/employee']);
-            }          
+            }
           }
         });
     } else {
       this.employeeService.save(employee)
         .subscribe({
           next: (response: any) => {
-            if(response == null){
+            if (response == null) {
               alert("This Employee allready Added !");
-            }else{
-              alert("Employee Saved Succesful !");
+            } else {
+              alert(
+                "Employee Saved Successfully!\n\n" +
+                "Username: " + response.userName + "\n" +
+                "Password: " + response.password
+              );
               this.router.navigate(['/employee']);
             }
           }

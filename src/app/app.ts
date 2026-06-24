@@ -20,7 +20,7 @@ export class App {
 
   constructor(
     public authService: AuthService
-  ) {}
+  ) { }
 
   protected readonly title = signal('emp-attendance-mgt-frontend');
 }

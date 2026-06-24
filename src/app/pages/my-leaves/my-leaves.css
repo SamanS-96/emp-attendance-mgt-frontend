@@ -1,10 +1,10 @@
-.edit-link{
-cursor:pointer;
-text-decoration:underline;
-font-size:15px;
-font-weight:500;
-color: #3f51b5;
-margin-left:8px;
+.edit-link {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 15px;
+  font-weight: 500;
+  color: #3f51b5;
+  margin-left: 8px;
 }
 
 .top-bar {
@@ -19,7 +19,7 @@ margin-left:8px;
   padding: 12px 20px;
   border-left: 4px solid #3f51b5;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
   display: flex;
   align-items: center;
@@ -61,7 +61,8 @@ th {
   font-weight: 700;
 }
 
-td, th {
+td,
+th {
   padding: 12px !important;
 }
 

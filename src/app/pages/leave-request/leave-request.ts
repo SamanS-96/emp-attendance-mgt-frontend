@@ -21,12 +21,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class LeaveRequest implements OnInit {
 
-  searchText:string='';
-  allLeaveRequests:any[]=[];
-  leaveRequests:any[]=[];
-  currentUser:any;
+  searchText: string = '';
+  allLeaveRequests: any[] = [];
+  leaveRequests: any[] = [];
+  currentUser: any;
 
-  displayedColumns:string[]=[
+  displayedColumns: string[] = [
     'userName',
     'fromDate',
     'toDate',
@@ -35,66 +35,66 @@ export class LeaveRequest implements OnInit {
   ];
 
   constructor(
-    private leaveRequestService:LeaveRequestService,
-    private cd:ChangeDetectorRef,
-    private router:Router,
-    private authService:AuthService
-  ){}
+    private leaveRequestService: LeaveRequestService,
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
-  ngOnInit():void{
-    this.currentUser=this.authService.getUser();
+  ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.loadLeaveRequests();
   }
 
-  approveLeaveRequest(id:number):void{
+  approveLeaveRequest(id: number): void {
 
     if (!confirm("Are you sure want to Approve this leave?")) {
       return;
     }
 
     this.leaveRequestService.approveLeaveRequest(id)
-    .subscribe({
-      next:(response:any)=>{
-        console.log(response);
-        this.loadLeaveRequests();
-      }
-    });
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          this.loadLeaveRequests();
+        }
+      });
   }
 
-  rejectLeaveRequest(id:number):void{
+  rejectLeaveRequest(id: number): void {
 
     if (!confirm("Are you sure want to Reject this leave?")) {
       return;
     }
 
     this.leaveRequestService.rejectLeaveRequest(id)
-    .subscribe({
-      next:(response:any)=>{
-        console.log(response);
-        this.loadLeaveRequests();
-      }
-    });
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+          this.loadLeaveRequests();
+        }
+      });
   }
 
-  loadLeaveRequests(){
+  loadLeaveRequests() {
     this.leaveRequestService.getAll()
-    .subscribe({
-      next:(data:any)=>{
-        console.log("LR DATA :",data);
-        this.allLeaveRequests=data;
-        this.leaveRequests=data;
-        this.cd.detectChanges();
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+      .subscribe({
+        next: (data: any) => {
+          console.log("LR DATA :", data);
+          this.allLeaveRequests = data;
+          this.leaveRequests = data;
+          this.cd.detectChanges();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
   }
 
-  searchLeaveRequests(){
-    const text=this.searchText.toLowerCase();
+  searchLeaveRequests() {
+    const text = this.searchText.toLowerCase();
 
-    this.leaveRequests=this.allLeaveRequests.filter(lr =>
+    this.leaveRequests = this.allLeaveRequests.filter(lr =>
       lr.userName.toLowerCase().includes(text) ||
       lr.fromDate.toString().includes(text) ||
       lr.toDate.toString().includes(text) ||

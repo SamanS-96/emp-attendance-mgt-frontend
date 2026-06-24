@@ -50,7 +50,7 @@
     <td mat-cell *matCellDef="let lr">
 
       @if(lr.status==='PENDING'){
-      {{ lr.status }} |<a class="edit-link" (click)="editLeaveRequest()">Edit</a>
+      {{ lr.status }} |<a class="edit-link" (click)="editLeaveRequest(lr.id)">Edit</a>
       }@else{
       {{lr.status}}
       }

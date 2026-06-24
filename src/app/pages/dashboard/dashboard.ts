@@ -10,27 +10,27 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard implements OnInit{
+export class Dashboard implements OnInit {
 
   currentUser: any;
   employeeCount: number | null = null;
   presentTodayCount: number | null = null;
   absentTodayCount: number | null = null;
   myStatus: string | null = null;
-  
+
   constructor(
     private authService: AuthService,
     private attendanceService: AttendanceService,
     private employeeService: EmployeeService,
     private cd: ChangeDetectorRef,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.currentUser = this.authService.getUser();
     this.loadDashboardDetails();
   }
 
-  loadDashboardDetails(){
+  loadDashboardDetails() {
     this.employeeService.getEmpCount()
       .subscribe({
         next: (count: number) => {
@@ -38,7 +38,7 @@ export class Dashboard implements OnInit{
           this.cd.detectChanges();
         }
       });
-    
+
     this.attendanceService.getTodayAttendanceDetails(this.authService.getUsername())
       .subscribe({
         next: (response: any) => {
@@ -50,7 +50,7 @@ export class Dashboard implements OnInit{
       });
   }
 
-  saveCheckIn(){
+  saveCheckIn() {
 
     const checkInUser = {
       "userName": this.authService.getUsername()
@@ -58,19 +58,19 @@ export class Dashboard implements OnInit{
 
     this.attendanceService.saveCheckIn(checkInUser)
       .subscribe({
-          next: (message: string) => {
-            console.log("Message :", message);
-            alert(message);
-            this.loadDashboardDetails();
-          },
-          error: (error) => {
-            console.log(error);
-            alert("CheckIn Failed, Please Try Again !");
-          }
+        next: (message: string) => {
+          console.log("Message :", message);
+          alert(message);
+          this.loadDashboardDetails();
+        },
+        error: (error) => {
+          console.log(error);
+          alert("CheckIn Failed, Please Try Again !");
+        }
       });
   }
 
-  saveCheckOut(){
+  saveCheckOut() {
 
     const checkOutUser = {
       "userName": this.authService.getUsername()
@@ -78,17 +78,17 @@ export class Dashboard implements OnInit{
 
     this.attendanceService.saveCheckOut(checkOutUser)
       .subscribe({
-          next: (message: string) => {
-            console.log("Message :", message);
-            alert(message);
-            this.loadDashboardDetails();
-          },
-          error: (error) => {
-            console.log(error);
-            alert("CheckOut Failed, Please Try Again !");
-          }
+        next: (message: string) => {
+          console.log("Message :", message);
+          alert(message);
+          this.loadDashboardDetails();
+        },
+        error: (error) => {
+          console.log(error);
+          alert("CheckOut Failed, Please Try Again !");
+        }
       });
-    
+
   }
 
 }

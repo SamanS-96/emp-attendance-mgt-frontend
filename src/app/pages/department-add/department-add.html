@@ -15,12 +15,12 @@
 
   <input type="text" placeholder="Name" formControlName="name">
   @if(departmentForm.get('name')?.touched && departmentForm.get('name')?.invalid){
-    <small>Department name is required</small>
+  <small>Department name is required</small>
   }
 
   <input type="text" placeholder="Description" formControlName="description">
   @if(departmentForm.get('description')?.touched && departmentForm.get('description')?.invalid){
-    <small>Description is required</small>
+  <small>Description is required</small>
   }
 
   <button mat-raised-button color="primary" type="submit">

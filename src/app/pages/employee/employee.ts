@@ -93,7 +93,7 @@ export class Employee implements OnInit {
       emp.userName.toLowerCase().includes(text) ||
       emp.firstName.toLowerCase().includes(text) ||
       emp.lastName.toLowerCase().includes(text) ||
-      emp.email.toLowerCase().includes(text)||
+      emp.email.toLowerCase().includes(text) ||
       emp.phone.toString().includes(text) ||
       emp.role.toLowerCase().includes(text) ||
       emp.department.name.toLowerCase().includes(text)

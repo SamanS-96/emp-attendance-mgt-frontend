@@ -18,12 +18,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class Attendance implements OnInit {
 
-  searchText:string='';
-  allAttendances:any[]=[];
-  attendances:any[]=[];
-  currentUser:any;
+  searchText: string = '';
+  allAttendances: any[] = [];
+  attendances: any[] = [];
+  currentUser: any;
 
-  displayedColumns:string[]=[
+  displayedColumns: string[] = [
     'userName',
     'attendanceDate',
     'checkInTime',
@@ -33,35 +33,35 @@ export class Attendance implements OnInit {
   ];
 
   constructor(
-    private attendanceService:AttendanceService,
-    private cd:ChangeDetectorRef,
-    private authService:AuthService
-  ){}
+    private attendanceService: AttendanceService,
+    private cd: ChangeDetectorRef,
+    private authService: AuthService
+  ) { }
 
-  ngOnInit():void{
-    this.currentUser=this.authService.getUser();
+  ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.loadAttendance();
   }
 
-  loadAttendance(){
+  loadAttendance() {
     this.attendanceService.getAll()
-    .subscribe({
-      next:(data:any)=>{
-        console.log("ATT DATA :",data);
-        this.allAttendances=data;
-        this.attendances=data;
-        this.cd.detectChanges();
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+      .subscribe({
+        next: (data: any) => {
+          console.log("ATT DATA :", data);
+          this.allAttendances = data;
+          this.attendances = data;
+          this.cd.detectChanges();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
   }
 
-  searchAttendance(){
-    const text=this.searchText.toLowerCase();
+  searchAttendance() {
+    const text = this.searchText.toLowerCase();
 
-    this.attendances=this.allAttendances.filter(att=>
+    this.attendances = this.allAttendances.filter(att =>
       att.userName.toLowerCase().includes(text) ||
       att.attendanceDate.toString().includes(text) ||
       att.status.toLowerCase().includes(text)

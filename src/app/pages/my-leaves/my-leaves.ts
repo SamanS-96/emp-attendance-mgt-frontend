@@ -19,12 +19,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class MyLeaves implements OnInit {
 
-  searchText:string='';
-  allLeaveRequests:any[]=[];
-  leaveRequests:any[]=[];
-  currentUser:any;
+  searchText: string = '';
+  allLeaveRequests: any[] = [];
+  leaveRequests: any[] = [];
+  currentUser: any;
 
-  displayedColumns:string[]=[
+  displayedColumns: string[] = [
     'userName',
     'fromDate',
     'toDate',
@@ -33,44 +33,44 @@ export class MyLeaves implements OnInit {
   ];
 
   constructor(
-    private leaveRequestService:LeaveRequestService,
-    private cd:ChangeDetectorRef,
-    private router:Router,
-    private authService:AuthService
-  ){}
+    private leaveRequestService: LeaveRequestService,
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
-  ngOnInit():void{
-    this.currentUser=this.authService.getUser();
+  ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.loadMyLeaves();
   }
 
-  addLeaveRequest(){
+  addLeaveRequest() {
     this.router.navigate(['/leave-request-add']);
   }
 
-  editLeaveRequest(){
-    this.router.navigate(['/leave-request-add']);
+  editLeaveRequest(id: number) {
+    this.router.navigate(['/leave-request-edit', id]);
   }
 
-  loadMyLeaves(){
+  loadMyLeaves() {
     this.leaveRequestService.getAllByUserName(this.authService.getUsername())
-    .subscribe({
-      next:(data:any)=>{
-        console.log("LR DATA :",data);
-        this.allLeaveRequests=data;
-        this.leaveRequests=data;
-        this.cd.detectChanges();
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+      .subscribe({
+        next: (data: any) => {
+          console.log("LR DATA :", data);
+          this.allLeaveRequests = data;
+          this.leaveRequests = data;
+          this.cd.detectChanges();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
   }
 
-  searchLeaveRequests(){
-    const text=this.searchText.toLowerCase();
+  searchLeaveRequests() {
+    const text = this.searchText.toLowerCase();
 
-    this.leaveRequests=this.allLeaveRequests.filter(lr =>
+    this.leaveRequests = this.allLeaveRequests.filter(lr =>
       lr.userName.toLowerCase().includes(text) ||
       lr.fromDate.toString().includes(text) ||
       lr.toDate.toString().includes(text) ||

@@ -80,12 +80,12 @@ export class DepartmentAdd implements OnInit {
         .update(this.departmentId, department)
         .subscribe({
           next: (response: any) => {
-            if(response == null){
+            if (response == null) {
               alert("name same for exist Department !");
-            }else{
+            } else {
               alert("Department Updated Succesful !");
               this.router.navigate(['/department']);
-            }               
+            }
           }
         });
 
@@ -95,12 +95,12 @@ export class DepartmentAdd implements OnInit {
         .save(department)
         .subscribe({
           next: (response: any) => {
-            if(response == null){
+            if (response == null) {
               alert("This Department allready Added !");
-            }else{
+            } else {
               alert("Department Saved Succesful !");
               this.router.navigate(['/department']);
-            }          
+            }
           }
         });
 

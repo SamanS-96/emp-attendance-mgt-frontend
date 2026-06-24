@@ -28,7 +28,7 @@
 
   border-radius: 10px;
 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 
   text-align: center;
 }
@@ -54,7 +54,7 @@
 
   border-radius: 10px;
 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 
   margin-bottom: 25px;
 }
@@ -90,7 +90,7 @@
 
   background: white;
 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 
   text-align: center;
 }
@@ -124,7 +124,7 @@
 
 .action-card button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 

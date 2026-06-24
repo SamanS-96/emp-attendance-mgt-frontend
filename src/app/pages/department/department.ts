@@ -18,56 +18,56 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './department.css',
 })
 export class Department implements OnInit {
-  searchText:string='';
-  allDepartments:any[]=[];
-  departments:any[]=[];
-  currentUser:any;
+  searchText: string = '';
+  allDepartments: any[] = [];
+  departments: any[] = [];
+  currentUser: any;
 
-  displayedColumns:string[]=[
+  displayedColumns: string[] = [
     'name',
     'description',
     'action'
   ];
 
   constructor(
-    private departmentService:DepartmentService,
-    private cd:ChangeDetectorRef,
-    private router:Router,
-    private authService:AuthService
-  ){}
+    private departmentService: DepartmentService,
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private authService: AuthService
+  ) { }
 
-  ngOnInit():void{
-    this.currentUser=this.authService.getUser();
+  ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.loadDepartments();
   }
 
-  addDepartment(){
+  addDepartment() {
     this.router.navigate(['/department-add']);
   }
 
-  editDepartment(id:number){
-    this.router.navigate(['/department-edit',id]);
+  editDepartment(id: number) {
+    this.router.navigate(['/department-edit', id]);
   }
 
-  loadDepartments(){
+  loadDepartments() {
     this.departmentService.getAll()
-    .subscribe({
-      next:(data:any)=>{
-        console.log("DPT DATA :",data);
-        this.allDepartments=data;
-        this.departments=data;
-        this.cd.detectChanges();
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+      .subscribe({
+        next: (data: any) => {
+          console.log("DPT DATA :", data);
+          this.allDepartments = data;
+          this.departments = data;
+          this.cd.detectChanges();
+        },
+        error: (error) => {
+          console.log(error);
+        }
+      });
   }
 
-  searchDepartments(){
-    const text=this.searchText.toLowerCase();
+  searchDepartments() {
+    const text = this.searchText.toLowerCase();
 
-    this.departments=this.allDepartments.filter(dpt=>
+    this.departments = this.allDepartments.filter(dpt =>
       dpt.name.toLowerCase().includes(text) ||
       dpt.description.toLowerCase().includes(text)
     );
