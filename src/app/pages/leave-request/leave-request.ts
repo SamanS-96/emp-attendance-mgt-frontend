@@ -47,6 +47,11 @@ export class LeaveRequest implements OnInit {
   }
 
   approveLeaveRequest(id:number):void{
+
+    if (!confirm("Are you sure want to Approve this leave?")) {
+      return;
+    }
+
     this.leaveRequestService.approveLeaveRequest(id)
     .subscribe({
       next:(response:any)=>{
@@ -57,6 +62,11 @@ export class LeaveRequest implements OnInit {
   }
 
   rejectLeaveRequest(id:number):void{
+
+    if (!confirm("Are you sure want to Reject this leave?")) {
+      return;
+    }
+
     this.leaveRequestService.rejectLeaveRequest(id)
     .subscribe({
       next:(response:any)=>{

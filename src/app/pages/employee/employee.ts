@@ -30,6 +30,7 @@ export class Employee implements OnInit {
     'lastName',
     'email',
     'phone',
+    'role',
     'departmentName',
     'action'
   ];
@@ -58,7 +59,7 @@ export class Employee implements OnInit {
   }
 
   deactivateEmployee(id: number) {
-    if (!confirm("Deactivate this employee?")) {
+    if (!confirm("Are you sure want to Deactivate this employee?")) {
       return;
     }
     this.employeeService
@@ -94,6 +95,7 @@ export class Employee implements OnInit {
       emp.lastName.toLowerCase().includes(text) ||
       emp.email.toLowerCase().includes(text)||
       emp.phone.toString().includes(text) ||
+      emp.role.toLowerCase().includes(text) ||
       emp.department.name.toLowerCase().includes(text)
     );
 
